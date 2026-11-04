@@ -1,0 +1,238 @@
+/* ==========================================
+   1. CSS Variables (Theme Configuration)
+   ================================---------- */
+:root {
+    --primary-color: #0b1a3a;     /* Deep Navy */
+    --accent-color: #f36c21;      /* IPL Orange */
+    --bg-color: #f4f7f6;          /* Light grayish background */
+    --card-bg: #ffffff;           /* Pure white for cards */
+    --text-color: #222222;        /* Dark text for readability */
+    --border-color: #cccccc;      /* Light gray for borders */
+}
+
+/* ==========================================
+   2. Base Reset & Typography
+   ================================---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    width: 85%;
+    max-width: 1200px;
+    margin: 30px auto;
+}
+
+/* ==========================================
+   3. Navigation Bar (Fixed Position)
+   ================================---------- */
+header {
+    background-color: var(--primary-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: 600;
+    font-size: 1.05rem;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--accent-color);
+}
+
+/* Push content down so it doesn't hide under fixed header */
+body {
+    padding-top: 60px; 
+}
+
+/* ==========================================
+   4. Banner (Hero) Section
+   ================================---------- */
+.hero {
+    background: linear-gradient(rgba(11, 26, 58, 0.85), rgba(11, 26, 58, 0.85)), 
+                url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=1200') center/cover no-repeat;
+    color: #ffffff;
+    text-align: center;
+    padding: 100px 20px;
+    margin-bottom: 30px;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    color: #dddddd;
+}
+
+/* ==========================================
+   5. Buttons & Links Styling
+   ================================---------- */
+button, .btn {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.2s ease;
+}
+
+button:hover, .btn:hover {
+    background-color: #d95a12;
+}
+
+/* ==========================================
+   6. Sections & Cards Styling
+   ================================---------- */
+section {
+    background-color: var(--card-bg);
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+h2 {
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--accent-color);
+    display: inline-block;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+}
+
+h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+/* Guidelines Articles as Cards */
+article {
+    background-color: var(--bg-color);
+    border-left: 4px solid var(--accent-color);
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 0 6px 6px 0;
+}
+
+/* ==========================================
+   7. Tables Styling
+   ================================---------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+th {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+tr:hover {
+    background-color: #f1f5f9;
+}
+
+/* ==========================================
+   8. Forms & Summary Fieldset Styling
+   ================================---------- */
+form p {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 5px;
+    color: var(--primary-color);
+}
+
+input, select {
+    width: 100%;
+    max-width: 450px;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+fieldset {
+    border: 2px dashed var(--primary-color);
+    border-radius: 6px;
+    padding: 20px;
+    background-color: #f0f4ff;
+    max-width: 450px;
+    margin-top: 20px;
+}
+
+legend {
+    font-weight: bold;
+    color: var(--primary-color);
+    padding: 0 10px;
+}
+
+/* ==========================================
+   9. Footer Styling
+   ================================---------- */
+footer {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+}
