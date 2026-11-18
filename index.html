@@ -10,11 +10,11 @@
     <!-- Navigation Bar -->
     <header>
         <nav>
-    <a href="index.html#schedule">Matches</a>
-    <a href="booking.html">Book Ticket</a>
-    <a href="index.html#my-bookings">My Bookings</a>
-    <a href="index.html#guidelines">Guidelines</a>
-</nav>
+            <a href="index.html#schedule">Matches</a>
+            <a href="booking.html">Book Ticket</a>
+            <a href="index.html#my-bookings">My Bookings</a>
+            <a href="index.html#guidelines">Guidelines</a>
+        </nav>
     </header>
 
     <hr>
@@ -86,7 +86,7 @@
                     <td>March 28, 2026 - 7:30 PM</td>
                     <td>M. A. Chidambaram Stadium, Chennai</td>
                     <td>₹1,500 / ₹3,500 / ₹8,000</td>
-                   <td><a href="booking.html" class="btn">Book</a></td>
+                    <td><a href="booking.html" class="btn">Book</a></td>
                 </tr>
                 <tr>
                     <td>Match 02</td>
@@ -117,27 +117,27 @@
         <!-- Booking Form -->
         <form action="#" method="post">
             <p>
-                <label for="match">Select Match:</label><br>
-                <select id="match" required>
-                    <option value="">-- Select Match --</option>
-                    <option value="m1">Match 01: CSK vs MI</option>
-                    <option value="m2">Match 02: RCB vs KKR</option>
-                    <option value="m3">Match 03: MI vs GT</option>
+                <label for="matchSelect">Select Match:</label><br>
+                <select id="matchSelect" required>
+                    <option value="" data-price="0">-- Select Match --</option>
+                    <option value="Match 01: CSK vs MI" data-price="1500">Match 01: CSK vs MI (₹1,500)</option>
+                    <option value="Match 02: RCB vs KKR" data-price="1200">Match 02: RCB vs KKR (₹1,200)</option>
+                    <option value="Match 03: MI vs GT" data-price="1800">Match 03: MI vs GT (₹1,800)</option>
                 </select>
             </p>
 
             <p>
-                <label for="stand">Stand Category:</label><br>
-                <select id="stand" required>
-                    <option value="General">General</option>
-                    <option value="Premium">Premium</option>
-                    <option value="VIP">VIP</option>
+                <label for="standSelect">Stand Category:</label><br>
+                <select id="standSelect" required>
+                    <option value="General" data-multiplier="1">General Stand (Base Price)</option>
+                    <option value="Premium" data-multiplier="2">Premium Stand (2x)</option>
+                    <option value="VIP" data-multiplier="4">VIP Hospitality (4x)</option>
                 </select>
             </p>
 
             <p>
-                <label for="tickets">Number of Tickets:</label><br>
-                <input type="number" id="tickets" min="1" max="10" value="1" required>
+                <label for="ticketQty">Number of Tickets:</label><br>
+                <input type="number" id="ticketQty" min="1" max="10" value="1" required>
             </p>
 
             <p>
@@ -163,11 +163,11 @@
         <!-- Booking Summary Card -->
         <fieldset>
             <legend><h3>Booking Summary</h3></legend>
-            <p><strong>Selected Match:</strong> Match 01 (CSK vs MI)</p>
-            <p><strong>Stand:</strong> General</p>
-            <p><strong>Ticket Price:</strong> ₹1,500</p>
-            <p><strong>Quantity:</strong> 1</p>
-            <p><strong>Total Amount:</strong> ₹1,500</p>
+            <p><strong>Selected Match:</strong> <span id="summaryMatch">None selected</span></p>
+            <p><strong>Stand:</strong> <span id="summaryStand">General</span></p>
+            <p><strong>Ticket Price:</strong> ₹<span id="summaryPrice">0</span></p>
+            <p><strong>Quantity:</strong> <span id="summaryQty">1</span></p>
+            <p><strong>Total Amount:</strong> ₹<span id="summaryTotal">0</span></p>
         </fieldset>
     </section>
 

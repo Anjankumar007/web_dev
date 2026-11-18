@@ -1,47 +1,67 @@
 // Reusable Toast Notification Function
 function showToast(message) {
-    // Create a div element for the toast
     const toast = document.createElement('div');
     toast.textContent = message;
-    
-    // Simple styling for the toast banner
     toast.style.position = 'fixed';
     toast.style.bottom = '20px';
     toast.style.right = '20px';
-    toast.style.backgroundColor = '#1a237e';
+    toast.style.backgroundColor = '#0b1a3a';
     toast.style.color = '#ffffff';
     toast.style.padding = '12px 20px';
     toast.style.borderRadius = '5px';
     toast.style.boxShadow = '0 4px 6px rgba(0,0,0,0.2)';
     toast.style.zIndex = '1000';
-    toast.style.fontFamily = 'Arial, sans-serif';
+    toast.style.fontFamily = 'Segoe UI, sans-serif';
     
-    // Append toast to the body
     document.body.appendChild(toast);
     
-    // Automatically remove the toast after 3 seconds (3000 milliseconds)
     setTimeout(function() {
         toast.remove();
-    }, 3000);
+    }, 2500);
 }
 
-// Smooth Scrolling and Toast Trigger when clicking Book buttons
+// Live Calculation & Summary Update
 document.addEventListener('DOMContentLoaded', function() {
-    // Select all links or buttons pointing to the book-ticket section
-    const bookLinks = document.querySelectorAll('a[href="#book-ticket"]');
-    
-    bookLinks.forEach(function(link) {
-        link.addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent instant jump
-            
-            const targetSection = document.querySelector('#book-ticket');
-            if (targetSection) {
-                // Smooth scroll to the booking section
-                targetSection.scrollIntoView({ behavior: 'smooth' });
-                
-                // Show confirmation toast notification
-                showToast('Navigating to booking section & ready to book!');
-            }
-        });
-    });
+    const matchSelect = document.getElementById('matchSelect');
+    const standSelect = document.getElementById('standSelect');
+    const ticketQty = document.getElementById('ticketQty');
+
+    const summaryMatch = document.getElementById('summaryMatch');
+    const summaryStand = document.getElementById('summaryStand');
+    const summaryPrice = document.getElementById('summaryPrice');
+    const summaryQty = document.getElementById('summaryQty');
+    const summaryTotal = document.getElementById('summaryTotal');
+
+    function updateBookingSummary() {
+        const selectedMatchOption = matchSelect.options[matchSelect.selectedIndex];
+        const matchName = selectedMatchOption.value ? selectedMatchOption.text : 'None selected';
+        const basePrice = parseInt(selectedMatchOption.getAttribute('data-price')) || 0;
+
+        const selectedStandOption = standSelect.options[standSelect.selectedIndex];
+        const standName = selectedStandOption.text;
+        const multiplier = parseFloat(selectedStandOption.getAttribute('data-multiplier')) || 1;
+
+        const adjustedPrice = basePrice * multiplier;
+        const qty = parseInt(ticketQty.value) || 1;
+        const totalAmount = adjustedPrice * qty;
+
+        // Update DOM elements in the summary card
+        summaryMatch.textContent = matchName;
+        summaryStand.textContent = standName;
+        summaryPrice.textContent = adjustedPrice.toLocaleString('en-IN');
+        summaryQty.textContent = qty;
+        summaryTotal.textContent = totalAmount.toLocaleString('en-IN');
+
+        // Trigger toast notification
+        if (selectedMatchOption.value) {
+            showToast('Summary updated live!');
+        }
+    }
+
+    // Attach event listeners
+    if (matchSelect && standSelect && ticketQty) {
+        matchSelect.addEventListener('change', updateBookingSummary);
+        standSelect.addEventListener('change', updateBookingSummary);
+        ticketQty.addEventListener('input', updateBookingSummary);
+    }
 });
