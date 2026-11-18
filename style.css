@@ -1,6 +1,6 @@
 /* ==========================================
-   1. CSS Variables (Theme Configuration)
-   ================================---------- */
+1. CSS Variables (Theme Configuration)
+   ========================================== */
 :root {
     --primary-color: #0b1a3a;     /* Deep Navy */
     --accent-color: #f36c21;      /* IPL Orange */
@@ -11,8 +11,8 @@
 }
 
 /* ==========================================
-   2. Base Reset & Typography
-   ================================---------- */
+2. Base Reset & Typography
+   ========================================== */
 * {
     margin: 0;
     padding: 0;
@@ -24,6 +24,7 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
+    padding-top: 60px; /* Push content down so it doesn't hide under fixed header */
 }
 
 .container {
@@ -33,9 +34,9 @@ body {
 }
 
 /* ==========================================
-   3. Navigation Bar (Fixed Position)
-   ================================---------- */
-header {
+3. Navigation Bar (Fixed Position + Flexbox)
+   ========================================== */
+header.navbar {
     background-color: var(--primary-color);
     position: fixed;
     top: 0;
@@ -43,36 +44,53 @@ header {
     width: 100%;
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-nav {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    padding: 15px 0;
+    padding: 15px 5%;
 }
 
-nav a {
+.logo {
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.logo span {
+    color: var(--accent-color);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.nav-links a {
     color: #ffffff;
     text-decoration: none;
-    margin: 0 20px;
     font-weight: 600;
     font-size: 1.05rem;
     transition: color 0.3s ease;
 }
 
-nav a:hover {
+.nav-links a:hover {
     color: var(--accent-color);
 }
 
-/* Push content down so it doesn't hide under fixed header */
-body {
-    padding-top: 60px; 
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1.8rem;
+    padding: 0;
+    cursor: pointer;
 }
 
 /* ==========================================
-   4. Banner (Hero) Section
-   ================================---------- */
+4. Banner (Hero) Section
+   ========================================== */
 .hero {
     background: linear-gradient(rgba(11, 26, 58, 0.85), rgba(11, 26, 58, 0.85)), 
                 url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=1200') center/cover no-repeat;
@@ -93,9 +111,16 @@ body {
     color: #dddddd;
 }
 
+.hero-btns {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
 /* ==========================================
-   5. Buttons & Links Styling
-   ================================---------- */
+5. Buttons & Links Styling
+   ========================================== */
 button, .btn {
     background-color: var(--accent-color);
     color: #ffffff;
@@ -115,9 +140,9 @@ button:hover, .btn:hover {
 }
 
 /* ==========================================
-   6. Sections & Cards Styling
-   ================================---------- */
-section {
+6. Sections & About Grid Styling
+   ========================================== */
+section.container {
     background-color: var(--card-bg);
     padding: 30px;
     margin-bottom: 30px;
@@ -146,18 +171,101 @@ li {
     margin-bottom: 8px;
 }
 
-/* Guidelines Articles as Cards */
-article {
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+/* ==========================================
+7. Match Schedule Controls & CSS Grid Cards
+   ========================================== */
+.schedule-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.schedule-controls label {
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.schedule-controls select {
+    width: auto;
+    min-width: 220px;
+}
+
+.match-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* List View Toggle State */
+.match-grid.list-view {
+    grid-template-columns: 1fr;
+}
+
+.match-grid.list-view .match-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.match-card {
+    background-color: var(--bg-color);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.match-card h3 {
+    margin: 10px 0;
+}
+
+.match-card p {
+    margin-bottom: 8px;
+}
+
+.badge {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+/* ==========================================
+8. Guidelines 3-Column CSS Grid
+   ========================================== */
+.guidelines-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+article.guideline-card {
     background-color: var(--bg-color);
     border-left: 4px solid var(--accent-color);
     padding: 15px;
-    margin-bottom: 15px;
     border-radius: 0 6px 6px 0;
 }
 
 /* ==========================================
-   7. Tables Styling
-   ================================---------- */
+9. Tables Styling
+   ========================================== */
+.table-responsive {
+    overflow-x: auto;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -183,8 +291,15 @@ tr:hover {
 }
 
 /* ==========================================
-   8. Forms & Summary Fieldset Styling
-   ================================---------- */
+10. Forms & Summary Fieldset Styling
+   ========================================== */
+.booking-wrapper {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 25px;
+    align-items: start;
+}
+
 form p {
     margin-bottom: 15px;
 }
@@ -211,13 +326,22 @@ input:focus, select:focus {
     border-color: var(--accent-color);
 }
 
-fieldset {
+fieldset.summary-card {
     border: 2px dashed var(--primary-color);
     border-radius: 6px;
     padding: 20px;
     background-color: #f0f4ff;
     max-width: 450px;
-    margin-top: 20px;
+}
+
+fieldset.summary-card p {
+    margin-bottom: 10px;
+}
+
+.total-line {
+    font-size: 1.15rem;
+    color: var(--accent-color);
+    margin-top: 12px;
 }
 
 legend {
@@ -227,12 +351,46 @@ legend {
 }
 
 /* ==========================================
-   9. Footer Styling
-   ================================---------- */
+11. Footer Styling
+   ========================================== */
 footer {
     background-color: var(--primary-color);
     color: #ffffff;
     text-align: center;
     padding: 20px 0;
     margin-top: 40px;
+}
+
+/* ==========================================
+12. Responsive Media Queries (Tablets & Mobile)
+   ========================================== */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        background-color: var(--primary-color);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        padding: 15px 5%;
+        gap: 15px;
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .about-grid,
+    .match-grid,
+    .guidelines-grid,
+    .booking-wrapper {
+        grid-template-columns: 1fr;
+    }
 }
